@@ -1,0 +1,15 @@
+import React from 'react'
+import { Container } from 'reactstrap'
+
+
+const Layout = (props) => {
+    return (
+        <>
+        <Container className="app">
+            {props.children}
+        </Container>
+        </>
+    )
+}
+
+export default Layout
