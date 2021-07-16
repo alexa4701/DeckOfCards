@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseURL = "https://localhost:5001/api"
+const baseURL = "/api"
 
 const dealOneCard = () => {
     const request = axios.get(`${baseURL}`)
