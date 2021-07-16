@@ -14,6 +14,7 @@ const Home = () => {
         .then(card => {
           if(!card){
             alert("No more cards! Time to shuffle.")
+            setWaiting(false)
           } else {
             let newCards = [...cards]
             newCards.push(card)
