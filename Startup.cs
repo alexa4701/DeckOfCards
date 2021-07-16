@@ -26,7 +26,7 @@ namespace DeckOfCards
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/build";
+                configuration.RootPath = "build";
             });
         }
 
@@ -59,7 +59,7 @@ namespace DeckOfCards
 
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "ClientApp";
+                spa.Options.SourcePath = "./";
 
                 if (env.IsDevelopment())
                 {

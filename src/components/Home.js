@@ -4,37 +4,51 @@ import deckService from '../services/deck'
 
 const Home = () => {
   const [cards, setCards] = useState([])
+  const [waiting, setWaiting] = useState(false)
 
   const dealOneCard = () => {
-    deckService
-      .dealOneCard()
-      .then(card => {
-        if(!card){
-          alert("No more cards! Time to shuffle.")
-        } else {
-          let newCards = [...cards]
-          newCards.push(card)
-          setCards(newCards)
-        }
-      })
+    if(!waiting) {
+      setWaiting(true)
+      deckService
+        .dealOneCard()
+        .then(card => {
+          if(!card){
+            alert("No more cards! Time to shuffle.")
+            setWaiting(false)
+          } else {
+            let newCards = [...cards]
+            newCards.push(card)
+            setCards(newCards)
+            setWaiting(false)
+          }
+        })
+    }
   }
 
   const shuffle = () => {
-    setCards([])
-    deckService
-      .shuffle()
-      .then(() => {
-        alert("Deck shuffled!")
-      })
+    if(!waiting) {
+      setWaiting(true)
+      setCards([])
+      deckService
+        .shuffle()
+        .then(() => {
+          alert("Deck shuffled!")
+          setWaiting(false)
+        })
+    }
   }
   
   const cut = () => {
-    setCards([])
-    deckService
-      .cut()
-      .then(() => {
-        alert("Deck cut!")
-      })
+    if(!waiting) {
+      setWaiting(true)
+      setCards([])
+      deckService
+        .cut()
+        .then(() => {
+          alert("Deck cut!")
+          setWaiting(false)
+        })
+    }
   }
   return (
     <>
